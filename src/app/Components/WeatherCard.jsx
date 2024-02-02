@@ -2,11 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import HourlyForecast from './HourlyForecast';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchWeatherInfo } from '../Features/weatherSlice';
-import { toast } from "react-toastify";
-function WeatherCard(props) {
+
+function WeatherCard() {
     const dispatch = useDispatch();
-    const weatherStatus = useSelector((state) => state.weather.weatherStatus);
+
     const WeatherInfo = useSelector((state) => state.weather.weatherInfo);
     const cityInfo = useSelector((state) => state.weather.cityInfo);
     const city = useSelector((state) => state.weather.city);
@@ -27,25 +26,7 @@ function WeatherCard(props) {
         const isDay = isDayTime(cityInfo.timezone, cityInfo.sunrise, cityInfo.sunset);
         setDayNight(isDay ? 'Day' : 'Night');
       
-        if(weatherStatus==="")
-        { 
-          dispatch(fetchWeatherInfo());
-        }
-        else if(weatherStatus==="failed")
-        {
-          toast.error("Something went wrong", {
-            position: "top-center",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            
-          });
-  
-        }
-        
+      
    
     }, [dispatch]);
     const formatDateTime=(datetimeString)=> {
@@ -56,8 +37,7 @@ function WeatherCard(props) {
       
         // Get date
         const date = inputDate.toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'short',
+          
           day: 'numeric',
         });
       

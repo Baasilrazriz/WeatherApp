@@ -1,6 +1,7 @@
 import React from 'react';
 
 function ForecastCard(props) {
+    
     return (
         <div>
             <div className="flex justify-between items-center">
