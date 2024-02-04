@@ -8,7 +8,7 @@ const dispatch=useDispatch();
   const search = useSelector((state) => state.weather.search);
   const weatherStatus = useSelector((state) => state.weather.weatherStatus);
   useEffect(()=>{
-    if(weatherStatus===""||weatherStatus!=="pending")
+    if(weatherStatus!=="pending")
     { 
       dispatch(fetchWeatherInfo(search));
     }
