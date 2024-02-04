@@ -26,9 +26,9 @@ function HighlightSection(props) {
   
     return (
         <div>
-<div className="w-[37rem] h-[25rem] bg-white px-10 py-4 rounded-xl ring-8 ring-white ring-opacity-40 overflow-hidden">
+<div className="sm:w-[35rem] w-[21rem] h-96 sm:h-[25rem] bg-white px-10 py-4 rounded-xl ring-8 ring-white ring-opacity-40 overflow-hidden">
 
-<h1 className="text-slate-600 font-extrabold pb-4 text-3xl col-span-2">
+<h1 className="text-slate-600 font-extrabold pb-4 text-nowrap text-3xl col-span-2">
   Today's Highlights
 </h1>
 <div className='grid grid-cols-2 gap-5'>

@@ -1,7 +1,6 @@
 import WeatherCard from '../Components/WeatherCard'; 
 import Header from '../Components/Header';
-import { useEffect, useState } from 'react';
-import Highlights from '../Components/Highlights';
+
 import HighlightSection from '../Components/HighlightSection';
 import { useSelector } from 'react-redux';
 
@@ -11,12 +10,12 @@ function MainPage(props) {
     return (
 
         <>
-                <div className='text-gray-700  bg-gradient-to-br from-pink-200 via-purple-200 to-indigo-200 h-screen w-screen'>
+                <div className='text-gray-700  bg-gradient-to-br from-pink-200 via-purple-200 to-indigo-200 h-full lg:h-screen  w-screen min-w-96 overflow-hidden'>
                 <Header/>   
                 
-                <div className="  pt-32 ">  
+                <div className="  pt-32 px-5 ">  
                 <h1 className="font-semibold mt-1 text-2xl text-gray-500 text-center pb-12">local time: <span className='text-red-500'>{localtime}</span></h1>
-                 <div className='flex justify-center items-center      gap-10'>
+                 <div className='flex lg:flex-row  flex-col justify-center items-center  gap-10'>
                  <WeatherCard />
 <HighlightSection/>
                  </div>

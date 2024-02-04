@@ -11,7 +11,7 @@ const dispatch=useDispatch();
 
   return (
         <>
-          <div className=' w-full fixed top-0 xl:h-20  h-40  z-10     xl:gap-20 gap-5 flex xl:flex-row flex-col overflow-hidden   shadow-xl   px-10'>
+          <div className=' w-full fixed top-0 xl:h-20  h-40  z-10 bg-gradient-to-br from-pink-200 via-purple-200 to-indigo-200     xl:gap-20 gap-5 flex xl:flex-row flex-col overflow-hidden   shadow-xl   px-10'>
           <div className='flex flex-col justify-center'>
           <div className='flex '>
           <div className="h-16 overflow-hidden bg-transparent rounded-full  ">

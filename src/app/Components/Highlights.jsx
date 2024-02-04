@@ -2,14 +2,14 @@ import React from "react";
 
 function Highlights({ stats }) {
   return (
-    <div className="bg-slate-600 h-36 w-60 p-2 overflow-hidden text-slate-200 flex flex-col justify-start items-center rounded-xl">
+    <div className="bg-slate-600 sm:h-36 h-28 w-32 sm:w-60 p-2 overflow-hidden text-slate-200 flex flex-col justify-start items-center rounded-xl">
       <h2 className="text-sm mt-2">{stats.title}</h2>
       <div className="mt-2">
-        <span className="text-4xl font-bold">{stats.value}</span>
+        <span className="sm:text-4xl text-2xl font-bold">{stats.value}</span>
         <span className="text-2xl">{stats.unit}</span>
       </div>
       {stats.direction ? (
-        <div className="flex mt-4">
+        <div className="flex sm:mt-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -29,7 +29,7 @@ function Highlights({ stats }) {
       ) : null}
 
       {stats.title == "Humidity" ? (
-        <div className="w-full mt-4 bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-700">
+        <div className="w-full sm:mt-4 mt-2 bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-700">
           <div
             className="bg-blue-600 h-1.5 rounded-full dark:bg-blue-500"
             style={{ width: `${stats.value}%` }}
