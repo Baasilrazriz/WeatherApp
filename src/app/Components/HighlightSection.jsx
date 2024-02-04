@@ -16,11 +16,11 @@ function HighlightSection(props) {
     const vis_miles = useSelector((state) => state.weather.vis_miles);
     const  pressure_mb= useSelector((state) => state.weather.pressure_mb);
     const  currentWeatherStatus= useSelector((state) => state.weather.currentWeatherStatus);
-    console.log(weatherData)
     useEffect(() => {
         if(currentWeatherStatus!=="pending")
     { 
         dispatch(fetchCurrentWeatherInfo(search))
+        
     }
     }, [search]);
   

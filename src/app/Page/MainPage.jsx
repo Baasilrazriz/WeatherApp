@@ -21,6 +21,8 @@ function MainPage(props) {
 <HighlightSection/>
                  </div>
                  <h1 className="pt-12  font-semibold text-2xl mt-1 text-gray-500 text-center w-full">last updated: <span className='text-red-500'>{last_updated}</span></h1>
+                 <h1 className="  font-semibold text-base mt-1 text-gray-500 text-center w-full">Created By: <span className='text-green-500'>Muhammmad Basil Irfan</span></h1>
+                 
                 </div>
             
                     </div>    

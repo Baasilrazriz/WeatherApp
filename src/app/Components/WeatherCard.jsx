@@ -4,16 +4,20 @@ import HourlyForecast from './HourlyForecast';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchWeatherInfo } from '../Features/weatherSlice';
 function WeatherCard(props) {
-    const WeatherInfo = useSelector((state) => state.weather.weatherInfo);
-    
-      const temp_c = useSelector((state) => state.weather.temp_c);
-      const temp_f = useSelector((state) => state.weather.temp_f);
-      const feels_like_c = useSelector((state) => state.weather.feels_like_c);
-      const feels_like_f = useSelector((state) => state.weather.feels_like_f);
-      const is_day = useSelector((state) => state.weather.is_day);
-      
-      const city = useSelector((state) => state.weather.city);
-      const country = useSelector((state) => state.weather.country);    
+  const dispatch=useDispatch();
+  const search = useSelector((state) => state.weather.search);    
+
+  const WeatherInfo = useSelector((state) => state.weather.weatherInfo);
+  const temp_c = useSelector((state) => state.weather.temp_c);
+  const temp_f = useSelector((state) => state.weather.temp_f);
+  const feels_like_c = useSelector((state) => state.weather.feels_like_c);
+  const feels_like_f = useSelector((state) => state.weather.feels_like_f);
+  const is_day = useSelector((state) => state.weather.is_day);
+  const localtime = useSelector((state) => state.weather.localtime);
+  
+  const city = useSelector((state) => state.weather.city);
+  const country = useSelector((state) => state.weather.country);    
+  
       const cityInfo = useSelector((state) => state.weather.cityInfo);
       const formatDateTime=(datetimeString)=> {
       const inputDate = new Date(datetimeString);
@@ -41,8 +45,12 @@ function WeatherCard(props) {
         time,
       };
     }
-  
-
+    const upcomingForecast = WeatherInfo.filter(event => {
+      const forecastDate = new Date(event.time);
+      const currentDate = new Date(localtime);
+      return forecastDate > currentDate;
+    });  
+console.log(upcomingForecast)
     return (
         <div>
           
@@ -61,9 +69,8 @@ function WeatherCard(props) {
     </div>
     <div className="flex justify-between mt-8 overflow-x-scroll overflow-y-hidden scroll gap-10 mx-8">    
         {
-         WeatherInfo.map((weather, index) => (
- 
-         <HourlyForecast temp={(weather.main.temp)} time={formatDateTime(weather.dt_txt).time} timeType={formatDateTime(weather.dt_txt).ampm} timestamp={cityInfo.timezone} sunrise={cityInfo.sunrise} sunset={cityInfo.sunset}/>
+         upcomingForecast.map((weather, index) => (
+         <HourlyForecast temp={(weather.temp_c)} time={formatDateTime(weather.time).time} timeType={formatDateTime(weather.time).ampm} image={weather.condition.icon} isday={weather.is_day}/>
          ))
     }
     </div>

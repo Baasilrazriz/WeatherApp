@@ -1,27 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-const id="4a8eb43813dd4916919f571af51e1e78";
-// const city="karachi";
-export const fetchWeatherInfo = createAsyncThunk(
-  'data/fetchWeatherInfo',
-  async (city, { rejectWithValue }) => {
-    try {
-      
-      const response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${id}`);
-  console.log(response.data);
-  return response.data
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
 export const fetchCurrentWeatherInfo = createAsyncThunk(
   'v1/fetchWeatherInfo',
   async (city, { rejectWithValue }) => {
     try {
       
-      const response = await axios.get(`https://api.weatherapi.com/v1/current.json?key=0eb2f9e6dd554873aa7120429230511&q=${city}&aqi=no;`);
-  console.log(response.data);
+      const response = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=0eb2f9e6dd554873aa7120429230511&q=${city}&days=10&aqi=no&alerts=yes`);
+
   return response.data
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -63,29 +48,11 @@ const weatherSlice = createSlice({
     
   extraReducers: (builder) => {
     builder
-      .addCase(fetchWeatherInfo.fulfilled, (state, action) => {
-          state.weatherStatus = "success";
-          state.city = action.payload.city.name;
-          state.country = action.payload.city.country;
-          state.weatherInfo = action.payload.list;
-          state.cityInfo = action.payload.city;
-          
       
-      })
-      .addCase(fetchWeatherInfo.pending, (state) => {
-
-        state.weatherStatus = "pending";
-        
-
-      })
-      .addCase(fetchWeatherInfo.rejected, (state) => {
-        state.weatherStatus = "failed";
-        
-        
-      })
       .addCase(fetchCurrentWeatherInfo.fulfilled, (state, action) => {
           state.currentWeatherStatus = "success";
           state.currentWeatherInfo=action.payload
+          state.weatherInfo = action.payload.forecast.forecastday[0].hour;
           state.wind_mph=action.payload.current.wind_mph
           state.wind_dir=action.payload.current.wind_dir
           state.humidity=action.payload.current.humidity        
