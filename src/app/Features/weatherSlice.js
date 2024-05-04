@@ -5,7 +5,7 @@ export const fetchCurrentWeatherInfo = createAsyncThunk(
   async (city, { rejectWithValue }) => {
     try {
       
-      const response = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=0eb2f9e6dd554873aa7120429230511&q=${city}&days=10&aqi=no&alerts=yes`);
+      const response = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=839006d372c74c52890191811240302&q=${city}&days=10&aqi=no&alerts=yes`);
 
   return response.data
     } catch (error) {
